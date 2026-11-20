@@ -1,0 +1,62 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    name: ${{ matrix.std }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        std: [c++11, c++14, c++17, c++20, c++23, gnu++11, gnu++14, gnu++17, gnu++20, gnu++23]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Compiler version
+        run: g++ --version
+
+      - name: Compile and run regression tests
+        env:
+          STD: ${{ matrix.std }}
+        run: |
+          # 严格 ISO 标准加 -pedantic-errors；GNU 标准不加（__int128 扩展会被判违规）
+          case "$STD" in
+            gnu*) EXTRA="" ;;
+            *)    EXTRA="-pedantic-errors" ;;
+          esac
+          g++ -std="$STD" $EXTRA -O2 -Wall -Wextra \
+              tests/test_all.cpp -o /tmp/test_all
+          /tmp/test_all
+
+      - name: Build all examples
+        env:
+          STD: ${{ matrix.std }}
+        run: |
+          case "$STD" in
+            gnu*) EXTRA="" ;;
+            *)    EXTRA="-pedantic-errors" ;;
+          esac
+          for src in examples/*.cpp; do
+            out="/tmp/$(basename "${src%.cpp}")"
+            g++ -std="$STD" $EXTRA -O2 -Wall -Wextra "$src" -o "$out"
+            "$out" >/dev/null
+          done
+
+  standalone-headers:
+    name: standalone headers (c++11)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Each header compiles independently
+        run: |
+          fail=0
+          for f in std_*.hpp; do
+            printf '#include"%s"\nint main(){return 0;}\n' "$f" > /tmp/one.cpp
+            if ! g++ -std=c++11 -pedantic-errors /tmp/one.cpp -o /tmp/one 2>/tmp/err; then
+              echo "FAIL: $f"; head -5 /tmp/err; fail=1
+            fi
+          done
+          test "$fail" -eq 0

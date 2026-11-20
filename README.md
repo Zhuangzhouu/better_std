@@ -10,15 +10,16 @@
 - **广泛兼容**：`g++ -std=c++11 -pedantic-errors` 严格 ISO 模式到 `-std=gnu++23` 全部零错误；GNU 模式自动启用 `__int128` / `__builtin_*` 加速
 - **多 TU 安全**：所有自由函数 `inline`，头文件自带所需标准头，两个 `.cpp` 同时 include 可正常链接
 - **纯头文件**：全模板、全内联，无需编译 `.cpp`、无需链接步骤
+- **持续验证**：GitHub Actions 在每次推送时对 10 种编译标准跑编译 + 对拍测试
 
-## 用法
+## 快速开始
 
 ```cpp
 #include"std_better.hpp"
 using namespace better_std;
 
 int main() {
-    // 高精度整数
+    // 高精度整数（精度作为模板参数）
     High_precision_number<50> a("12345678901234567890"), b(7);
     std::cout << (a * b + b) << "\n";
 
@@ -26,20 +27,34 @@ int main() {
     std::vector<int> v = {5, 3, 9, 1, 7};
     quick_sort(v.begin(), v.end());
 
-    // 字符串
+    // 字符串：后缀数组
     suffix_array sa("banana");
+
+    // 多项式因式分解
     auto res = factorize("x^2-1");
 
-    // 图 / 树
-    // Dinic, LCT, 圆方树, 虚树, 2-SAT ...
     return 0;
 }
 ```
 
-编译示例：
+编译：
 
 ```bash
-g++ -std=c++17 -O2 -Wall -Wextra main.cpp -o main
+g++ -std=c++11 -O2 -Wall -Wextra main.cpp -o main
+```
+
+> **Windows / MSYS2 注意**：链接时加 `-static`，否则生成的 exe 运行时会因缺少 MSYS2 运行库而以 127 退出。编译前先 `export PATH="/d/msys2/ucrt64/bin:$PATH"`。
+>
+> **GNU 加速**：把 `-std=c++11` 换成 `-std=gnu++17` 即自动启用 `__int128` / `__builtin_*` 快速路径；注意 GNU 模式不要加 `-pedantic-errors`（`__int128` 会被判为违规）。
+
+## 示例与测试
+
+- [`examples/`](examples/) — 分模块可运行示例，含一键编译脚本
+- [`tests/`](tests/) — 对拍测试，含覆盖 10 种标准的一键脚本
+
+```bash
+cd examples && bash build.sh     # 编译所有示例
+cd tests    && bash run_tests.sh # 10 种标准编译 + 运行对拍
 ```
 
 ## 模块一览
@@ -64,12 +79,19 @@ g++ -std=c++17 -O2 -Wall -Wextra main.cpp -o main
 
 ## 编译验证
 
-每个模块都经过与暴力/标准库的对拍验证，覆盖 C++11/14/17/20/23 及对应 GNU 模式共 10 种标准，输出逐字节一致。
+每个模块都经过与暴力/标准库的对拍验证，覆盖 C++11/14/17/20/23 及对应 GNU 模式共 10 种标准，输出逐字节一致。CI 与本地脚本（`tests/run_tests.sh`）使用同一套测试。
 
 ## 目录结构
 
-所有头文件位于仓库根目录，命名 `std_*.hpp`；`std_better.hpp` 是唯一入口，按依赖拓扑顺序引入全部模块。
+```
+.
+├── std_better.hpp      # 唯一入口，按依赖拓扑顺序引入全部模块
+├── std_*.hpp           # 82 个算法头文件，位于仓库根目录
+├── examples/           # 可运行示例 + build.sh
+├── tests/              # 对拍测试 + run_tests.sh
+└── .github/workflows/  # CI：10 种标准自动编译 + 测试
+```
 
 ## License
 
-MIT
+[MIT](LICENSE)
