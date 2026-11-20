@@ -9,6 +9,9 @@
 #include<sstream>
 #include<algorithm>
 #include<random>
+#include<cmath>
+#include<tuple>
+#include<functional>
 using namespace better_std;
 
 static int failures = 0;
@@ -175,6 +178,71 @@ static void test_overall_binary_random() {
     }
 }
 
+//—— 新增模块（v1.0.0）——
+static void test_kruskal_tree() {
+    // 链 0-1-2 权 5,7：bottleneck(0,2)=7
+    std::vector<kruskal_tree::edge> es = {{0,1,5},{1,2,7}};
+    kruskal_tree kt(3, es);
+    CHECK(kt.bottleneck(0,1) == 5);
+    CHECK(kt.bottleneck(0,2) == 7);
+    CHECK(kt.bottleneck(1,2) == 7);
+    // 三角形：0-1=10,1-2=1,0-2=5 → 0-2 瓶颈最小为 5（直接边），0-1 可为 min(10, max(5,1))=5
+    std::vector<kruskal_tree::edge> es2 = {{0,1,10},{1,2,1},{0,2,5}};
+    kruskal_tree kt2(3, es2);
+    CHECK(kt2.bottleneck(0,2) == 5);
+    CHECK(kt2.bottleneck(0,1) == 5);
+}
+static void test_centroid() {
+    // 链 0-1-2 边长1：距离=1 的点对 2 个，距离=2 的 1 个，距离<=2 的 3 个
+    std::vector<std::vector<long long>> edges = {{1,0,1},{2,1,1}};
+    centroid_decomposition cd(3, edges);
+    CHECK(cd.count_distance_k(1) == 2);
+    CHECK(cd.count_distance_k(2) == 1);
+    CHECK(cd.count_distance_le(2) == 3);
+}
+static void test_geometry_extra() {
+    std::vector<std::pair<double,double>> sq = {{0,0},{2,0},{2,2},{0,2}};
+    auto c = minimal_enclosing_circle(sq);
+    CHECK(std::fabs(c.first.first-1)<1e-6 && std::fabs(c.first.second-1)<1e-6);
+    CHECK(std::fabs(c.second - std::sqrt(2.0)) < 1e-6);
+}
+static void test_splay() {
+    splay_set sp;
+    for (int x : {5,3,9,1,7}) sp.insert(x);
+    CHECK(sp.size()==5);
+    CHECK(sp.kth(1)==1 && sp.kth(5)==9);
+    CHECK(sp.contains(5) && !sp.contains(4));
+    sp.erase(5);
+    CHECK(sp.size()==4 && !sp.contains(5));
+    std::vector<long long> a={1,2,3,4,5};
+    splay_sequence ss(a);
+    CHECK(ss.range_sum(2,4)==9);
+    ss.reverse_range(1,5);
+    auto b=ss.to_vector();
+    CHECK((b==std::vector<long long>{5,4,3,2,1}));
+}
+static void test_ptrie() {
+    std::vector<int> a={3,7,2,9,5};
+    persistent_trie pt(a,4);
+    CHECK(pt.max_xor(0,4,0)==9);
+    CHECK(pt.min_xor(0,4,0)==2);
+    CHECK(pt.kth_xor(0,4,0,0)==2);
+}
+static void test_mo_variants() {
+    // 回滚莫队：区间不同值个数
+    std::vector<int> a={1,2,1,3,2,1};
+    struct Distinct{ std::vector<int> cnt; std::vector<int>* a; long long res=0;
+        Distinct():cnt(0),a(nullptr){}
+        void set(std::vector<int>* p,int m){a=p;cnt.assign(m,0);res=0;}
+        void add(int pos){ if(cnt[(*a)[pos]]++==0) res++; } };
+    Distinct init; init.set(&a, 9);
+    std::vector<std::pair<int,int>> qs={{0,2},{1,4},{0,5}};
+    auto r=rollback_mo(6,qs,init);
+    CHECK(r[0].res==2);   // {1,2,1} → 2 种
+    CHECK(r[1].res==3);   // {2,1,3,2} → 3 种
+    CHECK(r[2].res==3);   // 全部 → 3 种
+}
+
 int main() {
     test_numeric();
     test_structures();
@@ -185,6 +253,12 @@ int main() {
     test_three_sum_random();
     test_wavelet_random();
     test_overall_binary_random();
+    test_kruskal_tree();
+    test_centroid();
+    test_geometry_extra();
+    test_splay();
+    test_ptrie();
+    test_mo_variants();
     printf("RESULT checks=%lld failures=%d %s\n", checks, failures,
            failures ? "FAIL" : "PASS");
     return failures ? 1 : 0;

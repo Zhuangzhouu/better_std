@@ -2,7 +2,7 @@
 
 [← 首页](Home.md)
 
-82 个 `std_*.hpp` 头文件，按类别索引。点开具体分类页看用法。
+88 个 `std_*.hpp` 头文件，按类别索引。点开具体分类页看用法。
 
 ## 数值与高精度
 
@@ -114,6 +114,12 @@
 | `std_offline.hpp` | 整体二分 + 线段树分治动态二分图 |
 | `std_three_sum.hpp` | 2/3/4SUM、计数版、bitset 位压存在性判定 |
 | `std_game_theory.hpp` | Nim/SG/巴什/阶梯 Nim |
+| `std_kruskal_tree.hpp` | Kruskal 重构树：瓶颈路、连通块 |
+| `std_centroid_decomposition.hpp` | 点分治：路径距离计数 |
+| `std_geometry_extra.hpp` | 最小圆覆盖、半平面交 |
+| `std_splay.hpp` | Splay：集合语义 + 序列语义（区间翻转） |
+| `std_persistent_trie.hpp` | 可持久化 01 Trie：区间最大/最小/第 k 异或 |
+| `std_mo_variants.hpp` | 带修莫队、回滚莫队 |
 | `std_compat.hpp` | ISO/GNU 兼容层 |
 
 > 完整函数签名见 [API 速查](API-Reference.md)。

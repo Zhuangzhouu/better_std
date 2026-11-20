@@ -116,5 +116,11 @@
 #include"std_tree_extra.hpp"
 #include"std_block_cut_tree.hpp"
 #include"std_game_theory.hpp"
+#include"std_kruskal_tree.hpp"
+#include"std_centroid_decomposition.hpp"
+#include"std_geometry_extra.hpp"
+#include"std_splay.hpp"
+#include"std_persistent_trie.hpp"
+#include"std_mo_variants.hpp"
 
 #endif // BETTER_STD_STD_BETTER_HPP

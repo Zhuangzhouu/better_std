@@ -1,6 +1,6 @@
 # better_std — 竞赛 C++ 算法库
 
-一个面向算法竞赛的**单头文件 C++ 算法库**：一行 `#include"std_better.hpp"` 引入全部 82 个头文件。
+一个面向算法竞赛的**单头文件 C++ 算法库**：一行 `#include"std_better.hpp"` 引入全部 88 个头文件。
 
 > 命名空间：`better_std`　|　语言基线：**ISO C++11**（C++11/14/17/20/23 与 gnu++ 系列全部编译通过）
 
@@ -75,6 +75,10 @@ cd tests    && bash run_tests.sh # 10 种标准编译 + 运行对拍
 | 数值计算 | Simpson 自适应积分、二分/牛顿求根、拉格朗日插值、单纯形法 |
 | 3SUM 家族 | two/three/four-sum、计数版、bitset 位压加速判定 |
 | 博弈论 | Nim、SG 函数、巴什博弈、阶梯 Nim |
+| 重构树/分治 | Kruskal 重构树（瓶颈路）、点分治（路径计数） |
+| 几何进阶 | 最小圆覆盖、半平面交 |
+| 高级数据结构 | Splay（集合/序列）、可持久化 Trie（区间异或） |
+| 莫队变体 | 带修莫队、回滚莫队 |
 | 兼容层 | `std_compat.hpp`：ISO 回退 / GNU 扩展自动分流 |
 
 ## 编译验证
@@ -86,11 +90,15 @@ cd tests    && bash run_tests.sh # 10 种标准编译 + 运行对拍
 ```
 .
 ├── std_better.hpp      # 唯一入口，按依赖拓扑顺序引入全部模块
-├── std_*.hpp           # 82 个算法头文件，位于仓库根目录
+├── std_*.hpp           # 88 个算法头文件，位于仓库根目录
 ├── examples/           # 可运行示例 + build.sh
 ├── tests/              # 对拍测试 + run_tests.sh
 └── .github/workflows/  # CI：10 种标准自动编译 + 测试
 ```
+
+## 版本
+
+当前版本 **v1.0.0**。变更记录见 [CHANGELOG.md](CHANGELOG.md)。
 
 ## License
 

@@ -128,6 +128,14 @@ next_perm / prev_perm / perm_to_rank / rank_to_perm / inversion_count
 discretize / compress / rank_of
 two_sum / three_sum / three_sum_closest / three_sum_count / four_sum / three_sum_exists_bitset
 nim_xor / nim_win / nim_first_move / sg_dag / bash_game / stairs_nim
+
+kruskal_tree(n,edges): bottleneck(u,v) component(v,limit)
+centroid_decomposition(n,edges): count_distance_k(K) count_distance_le(K)
+minimal_enclosing_circle(pts) / half_plane_intersection(lines)
+splay_set: insert erase contains rank kth predecessor successor
+splay_sequence(a): range_sum(l,r) reverse_range(l,r) to_vector
+persistent_trie(a,maxbit): max_xor min_xor kth_xor(l,r,x,k)
+modified_mo<S>(n,mods,qs,init) / rollback_mo<S>(n,qs,init)
 ```
 
 > 本页是速查，参数细节以各头文件注释为准；完整分类见 [模块全览](Module-Catalog.md)。

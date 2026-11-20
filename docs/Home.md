@@ -1,6 +1,6 @@
 # better_std Wiki
 
-`better_std` 是一个面向算法竞赛的**单头文件 C++ 算法库**：一行 `#include"std_better.hpp"` 引入全部 82 个头文件。
+`better_std` 是一个面向算法竞赛的**单头文件 C++ 算法库**：一行 `#include"std_better.hpp"` 引入全部 88 个头文件。
 
 > 命名空间 `better_std` · 语言基线 **ISO C++11** · 零第三方依赖 · 10 种编译标准持续验证
 
@@ -10,7 +10,7 @@
 |---|---|
 | [快速上手](Quick-Start.md) | 第一个程序、编译命令、常见用法 |
 | [编译与兼容](Build-Guide.md) | ISO / GNU 双模式、Windows MSYS2、多 TU、避坑 |
-| [模块全览](Module-Catalog.md) | 82 个头文件按类别索引 |
+| [模块全览](Module-Catalog.md) | 88 个头文件按类别索引 |
 | [数据结构](Data-Structures.md) | 堆、BST、并查集、树状数组、线段树、主席树、猫树等 |
 | [图论与树](Graph-and-Trees.md) | 图算法、网络流、匹配、LCA/LCT、虚树、圆方树、2-SAT |
 | [字符串与数论](String-and-NumberTheory.md) | KMP/Z/Manacher、AC 自动机、SA/SAM、哈希、数论函数、CRT、Pollard-Rho |
