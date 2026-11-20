@@ -1,0 +1,9 @@
+# shell 脚本强制 LF，避免 Windows checkout 后 CRLF 导致 Linux 下执行失败
+*.sh text eol=lf
+
+# C++ 源文件统一 LF（跨平台一致）
+*.cpp text eol=lf
+*.hpp text eol=lf
+*.md text eol=lf
+*.yml text eol=lf
+LICENSE text eol=lf
