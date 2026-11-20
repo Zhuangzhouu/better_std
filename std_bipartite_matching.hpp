@@ -1,9 +1,15 @@
-#pragma once
+#ifndef BETTER_STD_STD_BIPARTITE_MATCHING_HPP
+#define BETTER_STD_STD_BIPARTITE_MATCHING_HPP
+
 //===== better_std::std_bipartite_matching —— 二分图匹配 / 多重匹配 =====
 //  hopcroft_karp            : 单位容量二分图最大匹配（O(E√V)），返回匹配大小与 matchL/matchR。
 //  bipartite_multi_matching : 左右带容量（多重）匹配，基于紧凑 Dinic 最大流，
 //                             返回最大匹配数与每条输入边是否被选中。
-#include<bits/stdc++.h>
+#include<vector>
+#include<queue>
+#include<utility>
+#include<algorithm>
+#include<limits>
 namespace better_std {
 
 //—— Hopcroft–Karp ——
@@ -116,3 +122,5 @@ bipartite_multi_matching(int L, int R,
 }
 
 } // namespace better_std
+
+#endif // BETTER_STD_STD_BIPARTITE_MATCHING_HPP

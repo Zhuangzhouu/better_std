@@ -1,15 +1,18 @@
-#pragma once
+#ifndef BETTER_STD_STD_MINMAX_HEAP_HPP
+#define BETTER_STD_STD_MINMAX_HEAP_HPP
+
 //===== better_std 双端优先队列（min-max heap）=====
 // 一个结构同时充当小根堆与大根堆：push O(log n)，pop_min/pop_max O(log n)
 #include<vector>
 #include<algorithm>
+#include"std_compat.hpp"
 namespace better_std{
 
 template<typename T>
 class std_minmax_heap{
     std::vector<T> h;
 
-    static int level(int i){ return 31 - __builtin_clz(i + 1); }   // 0-based 层级，root=0(最小层)
+    static int level(int i){ return compat::ilog2_32((unsigned int)(i + 1)); }   // 0-based 层级，root=0(最小层)
     static int parent(int i){ return (i - 1) / 2; }
     static int grandparent(int i){ int p = parent(i); return p <= 0 ? -1 : parent(p); }
 
@@ -95,3 +98,5 @@ public:
 };
 
 } // namespace better_std
+
+#endif // BETTER_STD_STD_MINMAX_HEAP_HPP

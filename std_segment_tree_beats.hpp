@@ -1,4 +1,6 @@
-#pragma once
+#ifndef BETTER_STD_STD_SEGMENT_TREE_BEATS_HPP
+#define BETTER_STD_STD_SEGMENT_TREE_BEATS_HPP
+
 #include<vector>
 #include<algorithm>
 #include<limits>
@@ -116,3 +118,5 @@ namespace better_std{
             int size() const{ return n_; }
     };
 }
+
+#endif // BETTER_STD_STD_SEGMENT_TREE_BEATS_HPP

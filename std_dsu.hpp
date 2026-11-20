@@ -1,4 +1,6 @@
-#pragma once
+#ifndef BETTER_STD_STD_DSU_HPP
+#define BETTER_STD_STD_DSU_HPP
+
 #include<vector>
 #include<utility>
 namespace better_std{
@@ -40,3 +42,5 @@ namespace better_std{
             }
     };
 }
+
+#endif // BETTER_STD_STD_DSU_HPP

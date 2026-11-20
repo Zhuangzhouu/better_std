@@ -1,4 +1,6 @@
-#pragma once
+#ifndef BETTER_STD_STD_BST_HPP
+#define BETTER_STD_STD_BST_HPP
+
 #include<iostream>
 #include<vector>
 #include<utility>
@@ -127,3 +129,5 @@ namespace better_std{
             }
     };
 }
+
+#endif // BETTER_STD_STD_BST_HPP

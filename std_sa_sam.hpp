@@ -1,9 +1,16 @@
-#pragma once
+#ifndef BETTER_STD_STD_SA_SAM_HPP
+#define BETTER_STD_STD_SA_SAM_HPP
+
 //===== better_std::std_sa_sam —— 后缀数组 / 后缀自动机 =====
 //  suffix_array(s)  : 构造后缀数组 sa / 名次数组 rk / 高度数组 lcp（Kasai），
 //                     并提供 lcp_query(i,j) = 后缀 i 与后缀 j 的最长公共前缀（RMQ）。
 //  suffix_automaton : 后缀自动机，支持不同子串计数、模式串出现次数、最长子串长度。
-#include<bits/stdc++.h>
+#include<vector>
+#include<string>
+#include<map>
+#include<numeric>
+#include<algorithm>
+#include<utility>
 namespace better_std {
 
 //==================== 后缀数组 ====================
@@ -151,3 +158,5 @@ struct suffix_automaton {
 };
 
 } // namespace better_std
+
+#endif // BETTER_STD_STD_SA_SAM_HPP

@@ -1,8 +1,12 @@
-#pragma once
+#ifndef BETTER_STD_STD_BETTER_HPP
+#define BETTER_STD_STD_BETTER_HPP
+
 //===== better_std 数值库总入口：一行 include 全部 =====
-//分组按依赖拓扑排列；每个头文件自带 #pragma once
+//分组按依赖拓扑排列；每个头文件自带 ISO include guard
+//兼容层：严格 ISO 模式走纯标准实现，-std=gnu++XX 自动启用 GNU 扩展加速
+#include"std_compat.hpp"
 //
-//  数值：高精度整数/浮点、分数、复数、矩阵、多项式
+//  数值：高精度整数/浮点、分数、复数、矩阵、多项式、多项式因式分解
 //  容器：堆、二叉搜索树、树状数组、线段树、并查集、字典树
 //  字符串：KMP/Z/哈希、AC 自动机
 //  图与网络流：Dinic、最小费用最大流、网格图×2、图算法包
@@ -16,6 +20,7 @@
 #include"std_complex.hpp"
 #include"std_matrix.hpp"
 #include"std_polynomial.hpp"
+#include"std_poly_factor.hpp"
 
 //—— 容器 ——
 #include"std_heap.hpp"
@@ -72,3 +77,44 @@
 #include"std_dsu_extra.hpp"
 #include"std_geometry.hpp"
 #include"std_string_extra.hpp"
+
+//—— 平衡树 / 线性基 / 组合计数 / 最大权匹配 / 分块 ——
+#include"std_treap.hpp"
+#include"std_linear_basis.hpp"
+#include"std_combinatorics.hpp"
+#include"std_km.hpp"
+#include"std_sqrt_decomposition.hpp"
+
+//—— 猫树（Disjoint Sparse Table，O(1) 区间查询，支持非幂等运算）——
+#include"std_cat_tree.hpp"
+
+//—— 高级算法（纯增量追加）：大数分解 / 动态树 / 2-SAT / 杜教筛 / 矩阵树 / Polya / 单纯形 / 多点求值 ——
+#include"std_prime_factor.hpp"
+#include"std_lct.hpp"
+#include"std_two_sat.hpp"
+#include"std_dujiao.hpp"
+#include"std_matrix_tree.hpp"
+#include"std_polya.hpp"
+#include"std_simplex.hpp"
+#include"std_multipoint.hpp"
+
+//—— 高级算法第二批（纯增量）：FWT/FST / 线性递推 / 可并堆 / 数值 / KD-Tree / 离线 / 哈希 ——
+#include"std_fwt.hpp"
+#include"std_linear_recurrence.hpp"
+#include"std_mergeable_heap.hpp"
+#include"std_numerical.hpp"
+#include"std_kd_tree.hpp"
+#include"std_offline.hpp"
+#include"std_hashing.hpp"
+
+//—— "GPT 版" 高效 3SUM 家族（2/3/4SUM + bitset 位压加速判定）——
+#include"std_three_sum.hpp"
+
+//—— 高级算法第三批（纯增量）：CRT / 小波树 / 树扩展 / 圆方树 / 博弈论 ——
+#include"std_crt.hpp"
+#include"std_wavelet_tree.hpp"
+#include"std_tree_extra.hpp"
+#include"std_block_cut_tree.hpp"
+#include"std_game_theory.hpp"
+
+#endif // BETTER_STD_STD_BETTER_HPP

@@ -1,4 +1,6 @@
-#pragma once
+#ifndef BETTER_STD_STD_TYPE_DSU_HPP
+#define BETTER_STD_STD_TYPE_DSU_HPP
+
 //===== better_std::std_type_dsu —— 种类并查集延伸 + 带权区间 DSU =====
 //  1) type_dsu<K> : K 种并查集（扩展 parity_dsu 的 2 种到任意 K 种关系）
 //     维护每个节点相对根的「种类偏移」(mod K)，支持：
@@ -9,7 +11,9 @@
 //  2) interval_dsu : 带权区间 DSU（并查集优化区间覆盖/染色）
 //     用「下一个未覆盖位置」并查集，O(α) 摊还地遍历 [l,r] 内尚未覆盖的每个下标，
 //     配合回调 f(pos) 给每个位置赋权/染色；常用于区间赋值、区间去重等问题。
-#include<bits/stdc++.h>
+#include<vector>
+#include<numeric>
+#include<algorithm>
 namespace better_std {
 
 //—— K 种并查集 ——
@@ -97,3 +101,5 @@ struct interval_dsu {
 };
 
 } // namespace better_std
+
+#endif // BETTER_STD_STD_TYPE_DSU_HPP

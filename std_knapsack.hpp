@@ -1,4 +1,6 @@
-#pragma once
+#ifndef BETTER_STD_STD_KNAPSACK_HPP
+#define BETTER_STD_STD_KNAPSACK_HPP
+
 //===== better_std 背包 DP：0/1 / 完全 / 多重 / 子集和 =====
 #include<vector>
 #include<algorithm>
@@ -53,3 +55,5 @@ inline bool subset_sum(const std::vector<int>& w, int W){
 }
 
 } // namespace better_std
+
+#endif // BETTER_STD_STD_KNAPSACK_HPP

@@ -1,4 +1,6 @@
-#pragma once
+#ifndef BETTER_STD_STD_POLYNOMIAL_HPP
+#define BETTER_STD_STD_POLYNOMIAL_HPP
+
 #include<iostream>
 #include<vector>
 #include<utility>
@@ -255,3 +257,5 @@ namespace better_std{
         return g;
     }
 }
+
+#endif // BETTER_STD_STD_POLYNOMIAL_HPP

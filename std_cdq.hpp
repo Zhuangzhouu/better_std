@@ -1,4 +1,6 @@
-#pragma once
+#ifndef BETTER_STD_STD_CDQ_HPP
+#define BETTER_STD_STD_CDQ_HPP
+
 //===== better_std::std_cdq —— CDQ 分治 =====
 //  1) cdq_3d_partial_order : 三维偏序计数
 //     给定 n 个点 (x,y,z)，对每点 i 返回「坐标全 <= 的点 j(j!=i) 的个数」
@@ -6,7 +8,11 @@
 //     实现：按 x 稳定排序 → CDQ(按下标分治, 按 y 归并, 树状数组按 z 统计)，
 //     并对 x/y/z 全相等的点群做对称补正，结果对齐到输入顺序。
 //  2) cdq_divide_conquer : 通用 CDQ 分治骨架（merge 回调由用户提供）。
-#include<bits/stdc++.h>
+#include<vector>
+#include<array>
+#include<functional>
+#include<numeric>
+#include<algorithm>
 namespace better_std {
 
 // 三维偏序结果：count[i] = 坐标全 <= 点 i 的其它点的个数（对齐输入顺序）
@@ -93,7 +99,7 @@ inline cdq_3d_result cdq_3d_partial_order(const std::vector<std::array<int,3>>& 
 //   对 a[l..r] 递归二分，先处理左右，再调用 merge(a,l,mid,r) 合并（用户在此做贡献统计与归并）。
 //   典型用法：a 已按主维排序，merge 按次维归并并用 BIT 统计第三维。
 template<typename T, typename Merge>
-void cdq_divide_conquer(std::vector<T>& a, int l, int r, Merge merge) {
+inline void cdq_divide_conquer(std::vector<T>& a, int l, int r, Merge merge) {
     if (l >= r) return;
     int mid = (l + r) >> 1;
     cdq_divide_conquer(a, l, mid, merge);
@@ -102,3 +108,5 @@ void cdq_divide_conquer(std::vector<T>& a, int l, int r, Merge merge) {
 }
 
 } // namespace better_std
+
+#endif // BETTER_STD_STD_CDQ_HPP

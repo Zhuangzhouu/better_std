@@ -1,4 +1,6 @@
-#pragma once
+#ifndef BETTER_STD_STD_STRING_EXTRA_HPP
+#define BETTER_STD_STD_STRING_EXTRA_HPP
+
 //===== better_std::std_string_extra —— 回文自动机 / 后缀树 / 后缀数组 height 应用 =====
 //  palindrome_automaton   : 回文自动机（Eertree），distinct/longest/count_occurrences/总数
 //  suffix_tree            : 由后缀数组 + LCP 栈式构建的紧凑后缀树（O(n)），
@@ -210,3 +212,5 @@ inline std::pair<int, int> longest_common_substring(const std::string& a, const 
 }
 
 } // namespace better_std
+
+#endif // BETTER_STD_STD_STRING_EXTRA_HPP

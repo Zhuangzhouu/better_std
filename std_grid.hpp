@@ -1,4 +1,6 @@
-#pragma once
+#ifndef BETTER_STD_STD_GRID_HPP
+#define BETTER_STD_STD_GRID_HPP
+
 #include<iostream>
 #include<vector>
 #include<utility>
@@ -44,3 +46,5 @@ namespace better_std{
             virtual ~std_grid(){}
     };
 }
+
+#endif // BETTER_STD_STD_GRID_HPP

@@ -1,4 +1,6 @@
-#pragma once
+#ifndef BETTER_STD_STD_DSU_EXTRA_HPP
+#define BETTER_STD_STD_DSU_EXTRA_HPP
+
 //===== better_std::std_dsu_extra —— 并查集扩展：可撤销 / 可持久化 =====
 //  rollback_dsu      : 按 size 合并、无路径压缩；save()/rollback() 打点回滚，undo() 撤销一步
 //  persistent_dsu    : 基于节点式可持久化数组，按 size 合并、无路径压缩；
@@ -43,7 +45,7 @@ struct rollback_dsu {
     // 撤销最后一次成功合并（无历史则 no-op）
     void undo() {
         if (hist.empty()) return;
-        auto [child, parent] = hist.back();
+        int child = hist.back().first, parent = hist.back().second;
         hist.pop_back();
         par[child] = child;
         sz[parent] -= sz[child];
@@ -162,3 +164,5 @@ struct persistent_dsu {
 };
 
 } // namespace better_std
+
+#endif // BETTER_STD_STD_DSU_EXTRA_HPP

@@ -1,4 +1,10 @@
-#pragma once
+#ifndef BETTER_STD_STD_WEIGHTED_DSU_HPP
+#define BETTER_STD_STD_WEIGHTED_DSU_HPP
+
+#include<vector>
+#include<algorithm>
+#include<utility>
+
 //===== better_std::weighted_dsu —— 带权（种类）并查集 =====
 //通用加权并查集：每个节点维护相对父节点的"权值 delta"，
 //通过 Monoid trait 描述权值的单位元/组合/求逆，从而支持带关系约束的合并。
@@ -103,3 +109,5 @@ struct xor_monoid {
 using parity_dsu = weighted_dsu<xor_monoid>;
 
 } // namespace better_std
+
+#endif // BETTER_STD_STD_WEIGHTED_DSU_HPP

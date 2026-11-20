@@ -1,4 +1,6 @@
-#pragma once
+#ifndef BETTER_STD_STD_PERSISTENT_SEGMENT_TREE_HPP
+#define BETTER_STD_STD_PERSISTENT_SEGMENT_TREE_HPP
+
 #include<vector>
 #include<algorithm>
 namespace better_std{
@@ -59,3 +61,5 @@ namespace better_std{
             int versions() const{ return (int)roots.size(); }
     };
 }
+
+#endif // BETTER_STD_STD_PERSISTENT_SEGMENT_TREE_HPP

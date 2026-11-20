@@ -1,4 +1,6 @@
-#pragma once
+#ifndef BETTER_STD_STD_AC_AUTOMATON_HPP
+#define BETTER_STD_STD_AC_AUTOMATON_HPP
+
 #include<string>
 #include<vector>
 #include<queue>
@@ -117,3 +119,5 @@ namespace better_std{
             std::vector<int> nearest_out_;//fail 树上最近的模式结尾节点（-1 无）
     };
 }
+
+#endif // BETTER_STD_STD_AC_AUTOMATON_HPP

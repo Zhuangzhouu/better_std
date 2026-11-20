@@ -1,8 +1,11 @@
-#pragma once
+#ifndef BETTER_STD_STD_TARJAN_HPP
+#define BETTER_STD_STD_TARJAN_HPP
+
 //===== better_std 图连通性（Tarjan）：割点 / 桥 / 点双 / 边双 =====
 // 输入无向图 g：g[u] 为 u 的邻居列表（节点 0..n-1）
 #include<vector>
 #include<algorithm>
+#include<functional>
 namespace better_std{
 
 struct tarjan_result{
@@ -20,7 +23,7 @@ inline tarjan_result tarjan(const std::vector<std::vector<int>>& g){
     std::vector<int> stk;
     int ts = 0;
 
-    auto dfs = [&](auto& self, int u, int pe) -> void {
+    std::function<void(int,int)> dfs = [&](int u, int pe) -> void {
         dfn[u] = low[u] = ++ts;
         stk.push_back(u);
         int children = 0;
@@ -28,7 +31,7 @@ inline tarjan_result tarjan(const std::vector<std::vector<int>>& g){
             if(v == pe) continue;
             if(!dfn[v]){
                 children++;
-                self(self, v, u);
+                dfs(v, u);
                 low[u] = std::min(low[u], low[v]);
                 if(pe != -1 && low[v] >= dfn[u]) res.is_cut[u] = 1;
                 if(low[v] >= dfn[u]){               // 点双：弹出 v 子树并加入 u
@@ -49,7 +52,7 @@ inline tarjan_result tarjan(const std::vector<std::vector<int>>& g){
     };
 
     for(int i = 0; i < n; i++)
-        if(!dfn[i]) dfs(dfs, i, -1);
+        if(!dfn[i]) dfs(i, -1);
 
     // 桥：在 DFS 中已记录 dfn/low，树边 (u→v) 满足 low[v] > dfn[u] 即为桥
     for(int u = 0; u < n; u++){
@@ -84,3 +87,5 @@ inline tarjan_result tarjan(const std::vector<std::vector<int>>& g){
 }
 
 } // namespace better_std
+
+#endif // BETTER_STD_STD_TARJAN_HPP

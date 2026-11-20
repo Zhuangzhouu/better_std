@@ -1,4 +1,6 @@
-#pragma once
+#ifndef BETTER_STD_STD_DIFFERENCE_HPP
+#define BETTER_STD_STD_DIFFERENCE_HPP
+
 //===== better_std 差分数组：一维 / 二维 =====
 #include<vector>
 #include<algorithm>
@@ -87,3 +89,5 @@ public:
 };
 
 } // namespace better_std
+
+#endif // BETTER_STD_STD_DIFFERENCE_HPP

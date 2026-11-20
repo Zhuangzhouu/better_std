@@ -1,4 +1,6 @@
-#pragma once
+#ifndef BETTER_STD_STD_PREFIX_SUM_HPP
+#define BETTER_STD_STD_PREFIX_SUM_HPP
+
 //===== better_std 一维 / 二维前缀和 =====
 #include<vector>
 #include<algorithm>
@@ -49,3 +51,5 @@ public:
 };
 
 } // namespace better_std
+
+#endif // BETTER_STD_STD_PREFIX_SUM_HPP

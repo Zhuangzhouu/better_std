@@ -1,4 +1,6 @@
-#pragma once
+#ifndef BETTER_STD_STD_PERMUTATION_HPP
+#define BETTER_STD_STD_PERMUTATION_HPP
+
 //===== better_std 排列工具：全排列 / 康托展开 / 逆序对 =====
 #include<vector>
 #include<algorithm>
@@ -7,18 +9,18 @@ namespace better_std{
 
 // 下一个字典序排列（同 std::next_permutation 语义），存在返回 true
 template<typename T>
-bool next_perm(std::vector<T>& a){
+inline bool next_perm(std::vector<T>& a){
     return std::next_permutation(a.begin(), a.end());
 }
 // 上一个字典序排列
 template<typename T>
-bool prev_perm(std::vector<T>& a){
+inline bool prev_perm(std::vector<T>& a){
     return std::prev_permutation(a.begin(), a.end());
 }
 
 // 枚举 v 的所有排列（已排序去重后按字典序），对每个排列调用 f
 template<typename T, typename F>
-void for_each_permutation(std::vector<T> v, F f){
+inline void for_each_permutation(std::vector<T> v, F f){
     std::sort(v.begin(), v.end());
     do { f(v); } while(std::next_permutation(v.begin(), v.end()));
 }
@@ -26,7 +28,7 @@ void for_each_permutation(std::vector<T> v, F f){
 // 康托展开：排列 -> 字典序排名（0-based）。元素互异即可，内部离散化。
 // 注意 n>20 时阶乘溢出 long long，请保证 n<=20。
 template<typename T>
-long long perm_to_rank(const std::vector<T>& a){
+inline long long perm_to_rank(const std::vector<T>& a){
     int n = (int)a.size();
     std::vector<T> b = a;
     std::sort(b.begin(), b.end());
@@ -46,7 +48,7 @@ long long perm_to_rank(const std::vector<T>& a){
 
 // 逆康托展开：排名 k(0-based) -> 第 k 个字典序排列，元素为 0..n-1。
 // 要求 0 <= k < n!。
-std::vector<int> rank_to_perm(int n, long long k){
+inline std::vector<int> rank_to_perm(int n, long long k){
     std::vector<long long> fact(n + 1, 1);
     for(int i = 1; i <= n; i++) fact[i] = fact[i-1] * i;
     assert(k >= 0 && k < fact[n]);
@@ -65,7 +67,7 @@ std::vector<int> rank_to_perm(int n, long long k){
 
 // 逆序对数量（树状数组 O(n log n)，内部离散化）
 template<typename T>
-long long inversion_count(const std::vector<T>& a){
+inline long long inversion_count(const std::vector<T>& a){
     int n = (int)a.size();
     std::vector<T> b = a;
     std::sort(b.begin(), b.end());
@@ -90,3 +92,5 @@ long long inversion_count(const std::vector<T>& a){
 }
 
 } // namespace better_std
+
+#endif // BETTER_STD_STD_PERMUTATION_HPP

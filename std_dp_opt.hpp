@@ -1,10 +1,17 @@
-#pragma once
+#ifndef BETTER_STD_STD_DP_OPT_HPP
+#define BETTER_STD_STD_DP_OPT_HPP
+
 //===== better_std::std_dp_opt —— 斜率 / 单调队列优化 DP =====
 //  1) li_chao_tree  : 动态李超线段树，可任意顺序加入直线 y=kx+b，查询某 x 处最值（min/max）。
 //  2) convex_hull_trick_min / _max : 单调斜率优化（斜率单调递减/递增、查询 x 单调递增）。
 //  3) sliding_window_min_dp : 单调队列优化 DP 模板
 //        dp[i] = g[i] + min_{j∈[i-R,i-L]} (dp[j]+w[j])，O(n) 滑动窗口最小值。
-#include<bits/stdc++.h>
+#include<vector>
+#include<deque>
+#include<algorithm>
+#include<limits>
+#include<utility>
+#include<cmath>
 namespace better_std {
 
 //—— 李超线段树 ——
@@ -140,3 +147,5 @@ std::vector<T> sliding_window_min_dp(int n, int L, int R, T base0,
 }
 
 } // namespace better_std
+
+#endif // BETTER_STD_STD_DP_OPT_HPP

@@ -1,4 +1,6 @@
-#pragma once
+#ifndef BETTER_STD_STD_HEAP_HPP
+#define BETTER_STD_STD_HEAP_HPP
+
 #include<iostream>
 #include<vector>
 #include<functional>
@@ -59,3 +61,5 @@ namespace better_std{
             }
     };
 }
+
+#endif // BETTER_STD_STD_HEAP_HPP

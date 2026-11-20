@@ -1,4 +1,6 @@
-#pragma once
+#ifndef BETTER_STD_STD_TRIE_HPP
+#define BETTER_STD_STD_TRIE_HPP
+
 #include<vector>
 #include<string>
 namespace better_std{
@@ -99,3 +101,5 @@ namespace better_std{
             }
     };
 }
+
+#endif // BETTER_STD_STD_TRIE_HPP

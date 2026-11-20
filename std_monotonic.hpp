@@ -1,4 +1,6 @@
-#pragma once
+#ifndef BETTER_STD_STD_MONOTONIC_HPP
+#define BETTER_STD_STD_MONOTONIC_HPP
+
 //===== better_std 单调栈 / 单调队列 =====
 #include<vector>
 #include<deque>
@@ -6,7 +8,7 @@
 namespace better_std{
 
 // 最大矩形面积（直方图），heights 长度 n，O(n)
-long long largest_rectangle(const std::vector<long long>& h){
+inline long long largest_rectangle(const std::vector<long long>& h){
     int n = (int)h.size();
     std::vector<int> left(n), right(n);
     std::vector<int> st;
@@ -28,7 +30,7 @@ long long largest_rectangle(const std::vector<long long>& h){
 }
 
 // 接雨水：给定高度数组，能接的雨水量（左右扫描）
-long long trapping_rain_water(const std::vector<long long>& h){
+inline long long trapping_rain_water(const std::vector<long long>& h){
     int n = (int)h.size();
     if(n == 0) return 0;
     std::vector<long long> L(n), R(n);
@@ -42,7 +44,7 @@ long long trapping_rain_water(const std::vector<long long>& h){
 }
 
 // 滑动窗口最大值（单调队列），窗口大小 k（k>=1）
-std::vector<long long> mono_queue_max(const std::vector<long long>& a, int k){
+inline std::vector<long long> mono_queue_max(const std::vector<long long>& a, int k){
     int n = (int)a.size();
     std::vector<long long> res;
     std::deque<int> dq;
@@ -56,7 +58,7 @@ std::vector<long long> mono_queue_max(const std::vector<long long>& a, int k){
 }
 
 // 滑动窗口最小值（单调队列），窗口大小 k（k>=1）
-std::vector<long long> mono_queue_min(const std::vector<long long>& a, int k){
+inline std::vector<long long> mono_queue_min(const std::vector<long long>& a, int k){
     int n = (int)a.size();
     std::vector<long long> res;
     std::deque<int> dq;
@@ -70,3 +72,5 @@ std::vector<long long> mono_queue_min(const std::vector<long long>& a, int k){
 }
 
 } // namespace better_std
+
+#endif // BETTER_STD_STD_MONOTONIC_HPP

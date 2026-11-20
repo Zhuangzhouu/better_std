@@ -1,4 +1,6 @@
-#pragma once
+#ifndef BETTER_STD_STD_EXTREMA_HPP
+#define BETTER_STD_STD_EXTREMA_HPP
+
 //===== better_std::std_extrema —— 离散最值 / 前缀（后缀）极值结构 =====
 //  prefix_extrema<T>     : 一维前缀极值，O(n) 预处理 O(1) 查询 [0,k) 最值及首个/末个最值下标
 //  suffix_extrema<T>     : 一维后缀极值，O(1) 查询 [k,n)
@@ -144,3 +146,5 @@ struct prefix_extrema_2d {
 };
 
 } // namespace better_std
+
+#endif // BETTER_STD_STD_EXTREMA_HPP

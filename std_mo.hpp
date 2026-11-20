@@ -1,4 +1,6 @@
-#pragma once
+#ifndef BETTER_STD_STD_MO_HPP
+#define BETTER_STD_STD_MO_HPP
+
 //===== better_std::mo_algorithm —— 莫队算法（离线区间查询） =====
 //对数组 a[0..n-1] 的若干区间查询 [l, r]，按"块排序"后以 O((n+q)√n) 的均摊
 //复杂度顺序处理：每次通过 add(idx)/remove(idx) 维护可差分的数据结构，
@@ -48,3 +50,5 @@ void mo_algorithm(int n, const std::vector<std::pair<int,int>>& queries,
 }
 
 } // namespace better_std
+
+#endif // BETTER_STD_STD_MO_HPP

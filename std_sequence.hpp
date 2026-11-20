@@ -1,4 +1,6 @@
-#pragma once
+#ifndef BETTER_STD_STD_SEQUENCE_HPP
+#define BETTER_STD_STD_SEQUENCE_HPP
+
 //===== better_std 经典序列 DP（LIS / LCS）=====
 #include<vector>
 #include<algorithm>
@@ -6,7 +8,7 @@ namespace better_std{
 
 // 最长上升子序列长度（严格上升），O(n log n)
 template<typename T>
-int lis(const std::vector<T>& a){
+inline int lis(const std::vector<T>& a){
     std::vector<T> tails;
     for(auto x : a){
         auto it = std::lower_bound(tails.begin(), tails.end(), x);
@@ -18,7 +20,7 @@ int lis(const std::vector<T>& a){
 
 // 最长上升子序列本身（取最早出现方案），O(n log n)
 template<typename T>
-std::vector<T> lis_sequence(const std::vector<T>& a){
+inline std::vector<T> lis_sequence(const std::vector<T>& a){
     int n = (int)a.size();
     if(n == 0) return {};
     std::vector<T> tails;
@@ -49,7 +51,7 @@ std::vector<T> lis_sequence(const std::vector<T>& a){
 
 // 最长公共子序列长度，O(n m)
 template<typename T>
-int lcs(const std::vector<T>& a, const std::vector<T>& b){
+inline int lcs(const std::vector<T>& a, const std::vector<T>& b){
     int n = (int)a.size(), m = (int)b.size();
     std::vector<std::vector<int>> dp(n+1, std::vector<int>(m+1, 0));
     for(int i = 1; i <= n; i++)
@@ -61,7 +63,7 @@ int lcs(const std::vector<T>& a, const std::vector<T>& b){
 
 // 最长公共子序列本身（回溯），O(n m)
 template<typename T>
-std::vector<T> lcs_sequence(const std::vector<T>& a, const std::vector<T>& b){
+inline std::vector<T> lcs_sequence(const std::vector<T>& a, const std::vector<T>& b){
     int n = (int)a.size(), m = (int)b.size();
     std::vector<std::vector<int>> dp(n+1, std::vector<int>(m+1, 0));
     for(int i = 1; i <= n; i++)
@@ -80,3 +82,5 @@ std::vector<T> lcs_sequence(const std::vector<T>& a, const std::vector<T>& b){
 }
 
 } // namespace better_std
+
+#endif // BETTER_STD_STD_SEQUENCE_HPP

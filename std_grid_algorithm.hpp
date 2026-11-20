@@ -1,4 +1,6 @@
-#pragma once
+#ifndef BETTER_STD_STD_GRID_ALGORITHM_HPP
+#define BETTER_STD_STD_GRID_ALGORITHM_HPP
+
 #include<vector>
 #include<queue>
 #include<deque>
@@ -342,3 +344,5 @@ namespace better_std{
         return {cost,mst};
     }
 }
+
+#endif // BETTER_STD_STD_GRID_ALGORITHM_HPP

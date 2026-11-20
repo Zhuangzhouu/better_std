@@ -1,4 +1,6 @@
-#pragma once
+#ifndef BETTER_STD_STD_COMPLEX_HPP
+#define BETTER_STD_STD_COMPLEX_HPP
+
 #include<iostream>
 #include<cmath>
 namespace better_std{
@@ -106,3 +108,5 @@ namespace better_std{
             }
     };
 }
+
+#endif // BETTER_STD_STD_COMPLEX_HPP

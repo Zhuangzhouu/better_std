@@ -1,4 +1,6 @@
-#pragma once
+#ifndef BETTER_STD_STD_DIGIT_DP_HPP
+#define BETTER_STD_STD_DIGIT_DP_HPP
+
 //===== better_std 数位 DP（通用引擎 + 常用封装） =====
 //digit_dp(limit, n_states, init_state, next_state, accept, allow_zero):
 //  计数 [0, limit] 中满足条件的整数个数。把 limit 当作十进制串自高位到低位 DP，
@@ -86,3 +88,5 @@ inline long long count_without_digit(long long limit, int forbid) {
 }
 
 } // namespace better_std
+
+#endif // BETTER_STD_STD_DIGIT_DP_HPP

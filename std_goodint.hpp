@@ -1,4 +1,6 @@
-#pragma once
+#ifndef BETTER_STD_STD_GOODINT_HPP
+#define BETTER_STD_STD_GOODINT_HPP
+
 #include<iostream>
 #include<vector>
 #include<string>
@@ -436,3 +438,5 @@ namespace std{
         static better_std::High_precision_number<accuracy> denorm_min() noexcept{ return better_std::High_precision_number<accuracy>(0); }
     };
 }
+
+#endif // BETTER_STD_STD_GOODINT_HPP

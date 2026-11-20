@@ -1,4 +1,6 @@
-#pragma once
+#ifndef BETTER_STD_STD_GEOMETRY_HPP
+#define BETTER_STD_STD_GEOMETRY_HPP
+
 //===== better_std::std_geometry —— 计算几何基础 =====
 //  point2<T>             : 二维点/向量，支持四则/点积/叉积/长度/极角/旋转
 //  cross(a,b,c)/orient   : 三点点积叉积与转向
@@ -56,7 +58,7 @@ template<class T> int orient(const point2<T>& a, const point2<T>& b, const point
 //==================== 凸包（Andrew 单调链）=====================
 // 返回逆时针凸包。include_collinear=false 去除边上共线点；=true 保留全部边界点。
 template<class T>
-std::vector<point2<T>> convex_hull(std::vector<point2<T>> p, bool include_collinear = false) {
+inline std::vector<point2<T>> convex_hull(std::vector<point2<T>> p, bool include_collinear = false) {
     int n = (int)p.size();
     if (n <= 1) return p;
     std::sort(p.begin(), p.end());
@@ -82,7 +84,7 @@ std::vector<point2<T>> convex_hull(std::vector<point2<T>> p, bool include_collin
 
 //==================== 多边形面积（鞋带公式，取绝对值）=====================
 template<class T>
-long double polygon_area(const std::vector<point2<T>>& p) {
+inline long double polygon_area(const std::vector<point2<T>>& p) {
     long double s = 0;
     int n = (int)p.size();
     for (int i = 0; i < n; i++) {
@@ -94,7 +96,7 @@ long double polygon_area(const std::vector<point2<T>>& p) {
 
 //==================== 线段相交 ====================
 template<class T>
-bool on_segment(const point2<T>& a, const point2<T>& b, const point2<T>& p) {
+inline bool on_segment(const point2<T>& a, const point2<T>& b, const point2<T>& p) {
     // p 在 ab 上（含端点），前提 cross(a,b,p)==0
     return std::min(a.x, b.x) <= p.x && p.x <= std::max(a.x, b.x) &&
            std::min(a.y, b.y) <= p.y && p.y <= std::max(a.y, b.y);
@@ -138,7 +140,7 @@ bool point_in_polygon(const point2<T>& p, const std::vector<point2<T>>& poly,
 
 //==================== 矩形面积并（扫描线）=====================
 // rect: {x1, y1, x2, y2}（左下到右上，允许退化矩形自动忽略）；坐标为整数，返回整数面积。
-long long rectangle_union_area(std::vector<std::array<long long, 4>> rects) {
+inline long long rectangle_union_area(std::vector<std::array<long long, 4>> rects) {
     struct event { long long x, y1, y2; int delta; };
     std::vector<event> evs;
     std::vector<long long> ys;
@@ -184,3 +186,5 @@ long long rectangle_union_area(std::vector<std::array<long long, 4>> rects) {
 }
 
 } // namespace better_std
+
+#endif // BETTER_STD_STD_GEOMETRY_HPP

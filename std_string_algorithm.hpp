@@ -1,4 +1,6 @@
-#pragma once
+#ifndef BETTER_STD_STD_STRING_ALGORITHM_HPP
+#define BETTER_STD_STD_STRING_ALGORITHM_HPP
+
 #include<string>
 #include<vector>
 #include<utility>
@@ -116,3 +118,5 @@ namespace better_std{
         return {l,r};
     }
 }
+
+#endif // BETTER_STD_STD_STRING_ALGORITHM_HPP

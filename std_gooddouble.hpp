@@ -1,4 +1,6 @@
-#pragma once
+#ifndef BETTER_STD_STD_GOODDOUBLE_HPP
+#define BETTER_STD_STD_GOODDOUBLE_HPP
+
 #include<iostream>
 #include<string>
 #include<cmath>
@@ -851,3 +853,5 @@ namespace std{
     };
 }
 
+
+#endif // BETTER_STD_STD_GOODDOUBLE_HPP

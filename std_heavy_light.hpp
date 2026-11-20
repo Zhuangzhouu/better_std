@@ -1,4 +1,6 @@
-#pragma once
+#ifndef BETTER_STD_STD_HEAVY_LIGHT_HPP
+#define BETTER_STD_STD_HEAVY_LIGHT_HPP
+
 #include<vector>
 #include<utility>
 #include<algorithm>
@@ -93,3 +95,5 @@ namespace better_std{
             }
     };
 }
+
+#endif // BETTER_STD_STD_HEAVY_LIGHT_HPP

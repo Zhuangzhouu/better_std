@@ -1,0 +1,26 @@
+# 编译产物
+*.exe
+*.o
+*.obj
+*.a
+*.lib
+*.dll
+*.so
+*.dylib
+
+# 临时测试文件
+_*.cpp
+_*.exe
+_*.txt
+_t*.cpp
+_t*.exe
+
+# 编辑器/系统
+.vscode/
+.idea/
+*.swp
+Thumbs.db
+desktop.ini
+
+# WorkBuddy 项目数据（本地记忆，不上库）
+.workbuddy/

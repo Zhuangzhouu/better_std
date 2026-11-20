@@ -1,18 +1,27 @@
-#pragma once
+#ifndef BETTER_STD_STD_SORT_HPP
+#define BETTER_STD_STD_SORT_HPP
+
 //===== better_std::std_sort —— 各种排序 + 第 k 小选择 =====
 //  比较排序: insertion_sort / selection_sort / bubble_sort / shell_sort
 //           quick_sort / merge_sort(稳定) / heap_sort
 //  非比较排序: counting_sort(整数小值域 O(n+k)) / radix_sort(整数 O(n·w)) / bucket_sort([0,1) 浮点)
 //  选择算法: nth_element / quickselect（第 k 小，O(n) 期望）
 //  所有比较排序接受 [first,last) 随机访问迭代器区间，支持自定义比较器 cmp(a,b) 表示 a<b。
-#include<bits/stdc++.h>
+#include<vector>
+#include<algorithm>
+#include<iterator>
+#include<functional>
+#include<utility>
+#include<cstdint>
+#include<cmath>
+#include<limits>
 namespace better_std {
 
 //==================== 比较排序 ====================
 
 // 插入排序
 template<typename It, typename Cmp>
-void insertion_sort(It first, It last, Cmp cmp) {
+inline void insertion_sort(It first, It last, Cmp cmp) {
     using diff = typename std::iterator_traits<It>::difference_type;
     diff n = last - first;
     for (diff i = 1; i < n; i++) {
@@ -26,14 +35,14 @@ void insertion_sort(It first, It last, Cmp cmp) {
     }
 }
 template<typename It>
-void insertion_sort(It first, It last) {
+inline void insertion_sort(It first, It last) {
     using T = typename std::iterator_traits<It>::value_type;
     insertion_sort(first, last, std::less<T>());
 }
 
 // 选择排序
 template<typename It, typename Cmp>
-void selection_sort(It first, It last, Cmp cmp) {
+inline void selection_sort(It first, It last, Cmp cmp) {
     using diff = typename std::iterator_traits<It>::difference_type;
     diff n = last - first;
     for (diff i = 0; i < n; i++) {
@@ -43,14 +52,14 @@ void selection_sort(It first, It last, Cmp cmp) {
     }
 }
 template<typename It>
-void selection_sort(It first, It last) {
+inline void selection_sort(It first, It last) {
     using T = typename std::iterator_traits<It>::value_type;
     selection_sort(first, last, std::less<T>());
 }
 
 // 冒泡排序
 template<typename It, typename Cmp>
-void bubble_sort(It first, It last, Cmp cmp) {
+inline void bubble_sort(It first, It last, Cmp cmp) {
     using diff = typename std::iterator_traits<It>::difference_type;
     diff n = last - first;
     bool swapped = true;
@@ -64,14 +73,14 @@ void bubble_sort(It first, It last, Cmp cmp) {
     }
 }
 template<typename It>
-void bubble_sort(It first, It last) {
+inline void bubble_sort(It first, It last) {
     using T = typename std::iterator_traits<It>::value_type;
     bubble_sort(first, last, std::less<T>());
 }
 
 // 希尔排序（Knuth 增量 1,4,13,...）
 template<typename It, typename Cmp>
-void shell_sort(It first, It last, Cmp cmp) {
+inline void shell_sort(It first, It last, Cmp cmp) {
     using diff = typename std::iterator_traits<It>::difference_type;
     diff n = last - first;
     diff h = 1;
@@ -89,14 +98,14 @@ void shell_sort(It first, It last, Cmp cmp) {
     }
 }
 template<typename It>
-void shell_sort(It first, It last) {
+inline void shell_sort(It first, It last) {
     using T = typename std::iterator_traits<It>::value_type;
     shell_sort(first, last, std::less<T>());
 }
 
 // 快速排序（三数取中 + Lomuto 划分，递归）
 template<typename It, typename Cmp>
-void quick_sort(It first, It last, Cmp cmp) {
+inline void quick_sort(It first, It last, Cmp cmp) {
     using diff = typename std::iterator_traits<It>::difference_type;
     diff n = last - first;
     if (n <= 1) return;
@@ -121,14 +130,14 @@ void quick_sort(It first, It last, Cmp cmp) {
     quick_sort(first + p + 1, last, cmp);
 }
 template<typename It>
-void quick_sort(It first, It last) {
+inline void quick_sort(It first, It last) {
     using T = typename std::iterator_traits<It>::value_type;
     quick_sort(first, last, std::less<T>());
 }
 
 // 归并排序（稳定，自顶向下）
 template<typename It, typename Cmp>
-void merge_sort(It first, It last, Cmp cmp) {
+inline void merge_sort(It first, It last, Cmp cmp) {
     using diff = typename std::iterator_traits<It>::difference_type;
     diff n = last - first;
     if (n <= 1) return;
@@ -147,14 +156,14 @@ void merge_sort(It first, It last, Cmp cmp) {
     for (diff t = 0; t < n; t++) *(first + t) = std::move(tmp[t]);
 }
 template<typename It>
-void merge_sort(It first, It last) {
+inline void merge_sort(It first, It last) {
     using T = typename std::iterator_traits<It>::value_type;
     merge_sort(first, last, std::less<T>());
 }
 
 // 堆排序（手动最大堆，cmp 为 less 时升序）
 template<typename It, typename Cmp>
-void heap_sort(It first, It last, Cmp cmp) {
+inline void heap_sort(It first, It last, Cmp cmp) {
     using diff = typename std::iterator_traits<It>::difference_type;
     diff n = last - first;
     if (n <= 1) return;
@@ -175,7 +184,7 @@ void heap_sort(It first, It last, Cmp cmp) {
     }
 }
 template<typename It>
-void heap_sort(It first, It last) {
+inline void heap_sort(It first, It last) {
     using T = typename std::iterator_traits<It>::value_type;
     heap_sort(first, last, std::less<T>());
 }
@@ -184,12 +193,12 @@ void heap_sort(It first, It last) {
 
 // 计数排序：整数（或整数可比较）类型，值域较小；值域过大时回退 std::sort。
 template<typename T>
-void counting_sort(std::vector<T>& a) {
+inline void counting_sort(std::vector<T>& a) {
     if (a.empty()) return;
     T mn = *std::min_element(a.begin(), a.end());
     T mx = *std::max_element(a.begin(), a.end());
     uint64_t rng = (uint64_t)mx - (uint64_t)mn + 1;
-    if (rng > (uint64_t)5'000'000) { std::sort(a.begin(), a.end()); return; }
+    if (rng > (uint64_t)5000000) { std::sort(a.begin(), a.end()); return; }
     std::vector<uint64_t> cnt(rng, 0);
     for (const auto& x : a) cnt[(uint64_t)x - (uint64_t)mn]++;
     size_t p = 0;
@@ -199,7 +208,7 @@ void counting_sort(std::vector<T>& a) {
 
 // 基数排序（LSD，按字节，支持有符号/无符号整数；O(n·w)）
 template<typename T>
-void radix_sort(std::vector<T>& a) {
+inline void radix_sort(std::vector<T>& a) {
     size_t n = a.size();
     if (n <= 1) return;
     T mn = a[0];
@@ -244,7 +253,7 @@ inline void bucket_sort(std::vector<double>& a, double lo = 0.0, double hi = 1.0
 
 // 将 [first,last) 中第 k 小（0-indexed）置于位置 first+k，并保证其左侧均 <=、右侧均 >=。
 template<typename It, typename Cmp>
-void nth_element(It first, It last, size_t k, Cmp cmp) {
+inline void nth_element(It first, It last, size_t k, Cmp cmp) {
     using diff = typename std::iterator_traits<It>::difference_type;
     diff n = last - first;
     if (n <= 1 || (diff)k >= n) return;
@@ -279,7 +288,7 @@ void nth_element(It first, It last, size_t k, Cmp cmp) {
     }
 }
 template<typename It>
-void nth_element(It first, It last, size_t k) {
+inline void nth_element(It first, It last, size_t k) {
     using T = typename std::iterator_traits<It>::value_type;
     nth_element(first, last, k, std::less<T>());
 }
@@ -287,15 +296,17 @@ void nth_element(It first, It last, size_t k) {
 // quickselect：返回第 k 小的值（0-indexed）
 template<typename It, typename Cmp>
 typename std::iterator_traits<It>::value_type
-quickselect(It first, It last, size_t k, Cmp cmp) {
+inline quickselect(It first, It last, size_t k, Cmp cmp) {
     nth_element(first, last, k, cmp);
     return *(first + k);
 }
 template<typename It>
 typename std::iterator_traits<It>::value_type
-quickselect(It first, It last, size_t k) {
+inline quickselect(It first, It last, size_t k) {
     using T = typename std::iterator_traits<It>::value_type;
     return quickselect(first, last, k, std::less<T>());
 }
 
 } // namespace better_std
+
+#endif // BETTER_STD_STD_SORT_HPP

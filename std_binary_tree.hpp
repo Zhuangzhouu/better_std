@@ -1,7 +1,10 @@
-#pragma once
+#ifndef BETTER_STD_STD_BINARY_TREE_HPP
+#define BETTER_STD_STD_BINARY_TREE_HPP
+
 #include<iostream>
 #include<vector>
 #include<utility>
+#include<algorithm>
 #include"std_grid.hpp"
 using namespace better_std;
 namespace better_std{
@@ -137,3 +140,5 @@ namespace better_std{
             }
     };
 }
+
+#endif // BETTER_STD_STD_BINARY_TREE_HPP

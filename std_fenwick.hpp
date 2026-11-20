@@ -1,4 +1,6 @@
-#pragma once
+#ifndef BETTER_STD_STD_FENWICK_HPP
+#define BETTER_STD_STD_FENWICK_HPP
+
 #include<iostream>
 #include<vector>
 namespace better_std{
@@ -43,3 +45,5 @@ namespace better_std{
             int size() const{ return n_; }
     };
 }
+
+#endif // BETTER_STD_STD_FENWICK_HPP

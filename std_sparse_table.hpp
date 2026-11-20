@@ -1,6 +1,9 @@
-#pragma once
+#ifndef BETTER_STD_STD_SPARSE_TABLE_HPP
+#define BETTER_STD_STD_SPARSE_TABLE_HPP
+
 #include<vector>
 #include<algorithm>
+#include"std_compat.hpp"
 namespace better_std{
     //RMQ 稀疏表：O(n log n) 预处理，O(1) 区间最值查询
     //MAX=true 求最大值，默认求最小值
@@ -27,9 +30,11 @@ namespace better_std{
             }
             //闭区间 [l,r] 最值
             T query(int l,int r) const{
-                int k=31-__builtin_clz(r-l+1);
+                int k=compat::ilog2_32((unsigned int)(r-l+1));
                 return comb(st_[k][l],st_[k][r-(1<<k)+1]);
             }
             int size() const{ return n_; }
     };
 }
+
+#endif // BETTER_STD_STD_SPARSE_TABLE_HPP

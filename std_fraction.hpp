@@ -1,4 +1,6 @@
-#pragma once
+#ifndef BETTER_STD_STD_FRACTION_HPP
+#define BETTER_STD_STD_FRACTION_HPP
+
 #include<iostream>
 #include"std_goodint.hpp"
 using namespace better_std;
@@ -89,3 +91,5 @@ namespace better_std{
         return (x < fraction<accuracy>(0)) ? (-x) : x;
     }
 }
+
+#endif // BETTER_STD_STD_FRACTION_HPP

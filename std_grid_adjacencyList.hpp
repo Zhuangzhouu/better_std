@@ -1,4 +1,6 @@
-#pragma once
+#ifndef BETTER_STD_STD_GRID_ADJACENCYLIST_HPP
+#define BETTER_STD_STD_GRID_ADJACENCYLIST_HPP
+
 #include<iostream>
 #include<vector>
 #include<utility>
@@ -34,3 +36,5 @@ namespace better_std{
             }
     };
 }
+
+#endif // BETTER_STD_STD_GRID_ADJACENCYLIST_HPP

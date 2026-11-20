@@ -1,4 +1,6 @@
-#pragma once
+#ifndef BETTER_STD_STD_MCMF_HPP
+#define BETTER_STD_STD_MCMF_HPP
+
 #include<vector>
 #include<deque>
 #include<algorithm>
@@ -54,3 +56,5 @@ namespace better_std{
             }
     };
 }
+
+#endif // BETTER_STD_STD_MCMF_HPP
