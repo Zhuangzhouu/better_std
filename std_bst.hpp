@@ -11,10 +11,10 @@ namespace better_std{
     template<typename T>
     class std_bst{
         private:
-            struct Node{ T key; int l=-1,r=-1,sz=1; };//sz=子树节点数
+            struct Node{ T key; int l,r,sz; Node(const T& k):key(k),l(-1),r(-1),sz(1){} };//sz=子树节点数
             std::vector<Node> pool;
             int root_=-1,cnt_=0;
-            int new_node(const T& k){ pool.push_back({k,-1,-1,1}); return (int)pool.size()-1; }
+            int new_node(const T& k){ pool.push_back(Node(k)); return (int)pool.size()-1; }
             int lsz(int u) const{ return pool[u].l==-1?0:pool[pool[u].l].sz; }
             bool find_rec(int u,const T& k) const{
                 if(u==-1) return false;
@@ -57,10 +57,10 @@ namespace better_std{
                 while(true){
                     pool[u].sz++;
                     if(k<pool[u].key){
-                        if(pool[u].l==-1){ pool[u].l=new_node(k); cnt_++; return true; }
+                        if(pool[u].l==-1){ int nid=new_node(k); pool[u].l=nid; cnt_++; return true; }
                         u=pool[u].l;
                     }else if(pool[u].key<k){
-                        if(pool[u].r==-1){ pool[u].r=new_node(k); cnt_++; return true; }
+                        if(pool[u].r==-1){ int nid=new_node(k); pool[u].r=nid; cnt_++; return true; }
                         u=pool[u].r;
                     }else{ pool[u].sz--; return false; }//重复键：回退 sz
                 }

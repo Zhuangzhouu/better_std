@@ -36,6 +36,12 @@ static void test_structures() {
     quick_sort(v.begin(), v.end());
     CHECK((v == std::vector<int>{1, 3, 5, 7, 9}));
 
+    std_bst<int> bst;
+    for (int x : v) bst.insert(x);
+    CHECK(bst.contains(5) && !bst.contains(4));
+    CHECK(bst.kth(1) == 1 && bst.kth(5) == 9);   // kth 是 1-based
+    CHECK(bst.rank(5) == 2);                      // 严格小于 5 的个数：{1,3}
+
     std_fenwick<long long> fw(10);
     fw.add(3, 5); fw.add(6, 2);
     CHECK(fw.sum(5) == 5);
